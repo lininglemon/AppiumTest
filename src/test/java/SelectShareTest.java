@@ -6,6 +6,7 @@ import page.MainPage;
 import page.SelectSharePage;
 
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.hasItems;
@@ -22,8 +23,9 @@ public class SelectShareTest {
     }
 
    @Test
-    void 添加自选(String shareName){
-        selectSharePage.addShare(shareName);
+    void 添加自选(){
+
+        selectSharePage.addShare("pdd");
         assertThat("", equalTo(""));
     }
 
@@ -33,3 +35,4 @@ public class SelectShareTest {
         assertThat("", equalTo(""));
     }
 }
+

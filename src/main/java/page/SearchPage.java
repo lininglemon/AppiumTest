@@ -7,7 +7,6 @@ import io.appium.java_client.android.AndroidElement;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-
 import java.util.ArrayList;
 
 public class SearchPage extends BasePage{
@@ -18,7 +17,6 @@ public class SearchPage extends BasePage{
     public MainPage cancel(){
         find(By.id("action_close")).click();
         return new MainPage();
-
     }
 
     public ArrayList<String> getAll(){
@@ -49,5 +47,12 @@ public class SearchPage extends BasePage{
     public SearchPage removeSelected(){
         return this;
 
+    }
+    public SearchPage addShare(String keyword){
+        this.search(keyword);
+        AndroidElement select=(AndroidElement) find(By.xpath("//*[contains(@resource-id, 'follow') and contains(@resource-id, '_btn')]"));
+        select.click();
+
+        return this;
     }
 }

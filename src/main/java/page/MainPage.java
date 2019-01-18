@@ -9,6 +9,7 @@ import org.openqa.selenium.WebElement;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import static java.lang.Thread.sleep;
 public class MainPage extends BasePage {
@@ -21,9 +22,7 @@ public class MainPage extends BasePage {
 
     public ProfilePage gotoProfile(){
         Driver.getCurrentDriver().findElement(profile).click();
-
-
-        return new ProfilePage();
+       return new ProfilePage();
 
     }
 
@@ -32,17 +31,17 @@ public class MainPage extends BasePage {
         return new SearchPage();
     }
     public SelectSharePage gotoSelectShare(){
+        find(text("允许")).click();
+        find(text("允许")).click();
+        //等待6秒钟，保证页面能完全加载
+        Driver.getCurrentDriver().manage().timeouts().implicitlyWait(6, TimeUnit.SECONDS);
         //find(text("自选")).click();
         //waitAndFindElement( By.xpath("//*[@text='自选']"));
-        try {
-            sleep(5);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        //find(text("允许")).click();
         List<AndroidElement> els = new ArrayList<AndroidElement>();
         els = Driver.getCurrentDriver().findElementsByAndroidUIAutomator("resourceId(\"com.xueqiu.android:id/tab_icon\")");
         els.get(1).click();
-       return new SelectSharePage();
+        return new SelectSharePage();
 
     }
     //首页上自选这类的按钮，坐标会随着页面加载发生变化，等位置固定后再点击
@@ -76,3 +75,4 @@ public class MainPage extends BasePage {
 
     }
 }
+
